@@ -8,6 +8,7 @@ def main(cfg):
     GPIO.setmode(GPIO.BCM)
     GPIO.cleanup()
     GPIO.setup(cfg['gpio_pin_relay'], GPIO.OUT)
+    GPIO.output(cfg['gpio_pin_relay'], GPIO.LOW)
     address = ('localhost', 6001)  # family is deduced to be 'AF_INET'
     keep_running = True
 
