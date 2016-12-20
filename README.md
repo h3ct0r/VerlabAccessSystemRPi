@@ -16,7 +16,7 @@ This access sytem need the following hardware to work properly:
 
 ### Installation
 
-To do
+To do, based on https://www.sunfounder.com/wiki/index.php?title=How_to_Use_an_RFID_RC522_on_Raspberry_Pi
 
 ### Todos
  - RFID robust search
