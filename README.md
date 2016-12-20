@@ -18,6 +18,8 @@ This access sytem need the following hardware to work properly:
 
 To do, based on https://www.sunfounder.com/wiki/index.php?title=How_to_Use_an_RFID_RC522_on_Raspberry_Pi
 
+- Rename config/config.json.rename to config.json to begin
+
 ### Todos
  - RFID robust search
  - Face detection
