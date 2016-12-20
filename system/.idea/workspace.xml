@@ -35,8 +35,8 @@
       <file leaf-file-name="relay_server.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scripts/relay_server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-25">
-              <caret line="10" column="47" selection-start-line="10" selection-start-column="47" selection-end-line="10" selection-end-column="47" />
+            <state relative-caret-position="395">
+              <caret line="35" column="73" selection-start-line="35" selection-start-column="73" selection-end-line="35" selection-end-column="73" />
               <folding>
                 <element signature="e#0#47#0" expanded="true" />
               </folding>
@@ -83,8 +83,8 @@
       <list>
         <option value="$PROJECT_DIR$/config/config.json.rename" />
         <option value="$PROJECT_DIR$/cron/synch_RFID.py" />
-        <option value="$PROJECT_DIR$/scripts/relay_server.py" />
         <option value="$PROJECT_DIR$/config/config.json" />
+        <option value="$PROJECT_DIR$/scripts/relay_server.py" />
       </list>
     </option>
   </component>
@@ -475,8 +475,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/relay_server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-25">
-          <caret line="10" column="47" selection-start-line="10" selection-start-column="47" selection-end-line="10" selection-end-column="47" />
+        <state relative-caret-position="395">
+          <caret line="35" column="73" selection-start-line="35" selection-start-column="73" selection-end-line="35" selection-end-column="73" />
           <folding>
             <element signature="e#0#47#0" expanded="true" />
           </folding>
