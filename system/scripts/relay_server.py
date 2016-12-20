@@ -7,7 +7,7 @@ import RPi.GPIO as GPIO
 def main(cfg):
     GPIO.setmode(GPIO.BCM)
     GPIO.cleanup()
-    GPIO.setup(4, GPIO.OUT)
+    GPIO.setup(cfg['gpio_pin_relay'], GPIO.OUT)
     address = ('localhost', 6001)  # family is deduced to be 'AF_INET'
     keep_running = True
 
@@ -31,6 +31,8 @@ def main(cfg):
                         print '[RELAY_SRV]', 'Opening door', time.time()
                         for i in xrange(cfg['relay_pulses']):
                             GPIO.output(cfg['gpio_pin_relay'], GPIO.HIGH)
+                            time.sleep(cfg['relay_ms_between_pulses'])
+                            GPIO.output(cfg['gpio_pin_relay'], GPIO.LOW)
                             time.sleep(cfg['relay_ms_between_pulses'])
 
         except Exception as e:
