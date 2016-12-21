@@ -6,5 +6,7 @@
   "process_passwd": "e8485fhtt",
   "gpio_pin_relay": 7,
   "relay_pulses": 20,
-  "relay_ms_between_pulses": 0.2
+  "relay_ms_between_pulses": 0.2,
+  "relay_port": 6001,
+  "lcd_port": 6002
 }

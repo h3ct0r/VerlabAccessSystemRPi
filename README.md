@@ -32,6 +32,14 @@ To do, based on https://www.sunfounder.com/wiki/index.php?title=How_to_Use_an_RF
  - Web config interface
  - Write Tests
 
+### Commands
+
+- `sudo apt-get install python-smbus`
+- `sudo i2cdetect -y 1` to test if i2c interface is working and have connected devices 
+- `sudo pip install unidecode`
+- `sudo apt-get install libsasl2-dev python-dev libldap2-dev libssl-dev`
+- `sudo pip install python-ldap`
+
 License
 ----
 

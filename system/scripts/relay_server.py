@@ -4,12 +4,13 @@ import time
 import sys
 import RPi.GPIO as GPIO
 
+
 def main(cfg):
     GPIO.setmode(GPIO.BCM)
     GPIO.cleanup()
     GPIO.setup(cfg['gpio_pin_relay'], GPIO.OUT)
     GPIO.output(cfg['gpio_pin_relay'], GPIO.HIGH)
-    address = ('localhost', 6001)  # family is deduced to be 'AF_INET'
+    address = ('localhost', cfg['relay_port'])
     keep_running = True
 
     while keep_running:

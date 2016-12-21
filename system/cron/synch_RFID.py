@@ -1,6 +1,8 @@
 import json
 import ldap
 import sys
+import re
+from unidecode import unidecode
 
 
 def main(cfg):
@@ -14,8 +16,8 @@ def main(cfg):
 
     search_scope = ldap.SCOPE_SUBTREE  # this will scope the entire subtree under Users
     search_filter = "(&)"
-    search_attribute = ['uid', 'accessToken', 'verlabActive']
-    result_query = []
+    search_attribute = ['uid', 'accessToken', 'verlabActive', 'givenName']
+    result_query = {}
 
     try:
         ldap_result_id = l.search(cfg['ldap_basedn'], search_scope, search_filter, search_attribute)
@@ -33,14 +35,21 @@ def main(cfg):
                     if data_dict['verlabActive'][0] != 'TRUE':
                         continue
 
-                    result_query.append(data_dict)
+                    # Format data from the LDAP, use first find
+                    uid = data_dict.pop('uid', None)
+                    small_data = {}
+                    for k in search_attribute:
+                        if k in data_dict:
+                            small_data[k] = unidecode(unicode(data_dict[k][0], encoding = "utf-8"))
+
+                    result_query[uid[0]] = small_data
     except ldap.LDAPError, e:
         sys.stderr.write(str(e))
         sys.exit()
 
     l.unbind_s()
 
-    result_query.sort(key=lambda x: x['accessToken'][0])
+    #result_query.sort(key=lambda x: x['accessToken'][0])
     with open('../data/data.json', 'w') as outfile:
         json.dump(result_query, outfile)
 
