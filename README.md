@@ -31,6 +31,7 @@ To do, based on https://www.sunfounder.com/wiki/index.php?title=How_to_Use_an_RF
  - Face detection
  - Web config interface
  - Write Tests
+ - http://blog.scphillips.com/posts/2013/07/getting-a-python-script-to-run-in-the-background-as-a-service-on-boot/
 
 ### Commands
 

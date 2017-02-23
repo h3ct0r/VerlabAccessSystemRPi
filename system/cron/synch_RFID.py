@@ -49,7 +49,6 @@ def main(cfg):
 
     l.unbind_s()
 
-    #result_query.sort(key=lambda x: x['accessToken'][0])
     with open('../data/data.json', 'w') as outfile:
         json.dump(result_query, outfile)
 

@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from multiprocessing.connection import Listener
 import json
 import time
@@ -12,6 +14,8 @@ def main(cfg):
     GPIO.output(cfg['gpio_pin_relay'], GPIO.HIGH)
     address = ('localhost', cfg['relay_port'])
     keep_running = True
+    
+    print '[RELAY_SRV]', 'Relay server started and waiting for connections'
 
     while keep_running:
         listener = Listener(address, authkey=cfg['process_passwd'].encode())
@@ -46,7 +50,7 @@ def main(cfg):
     pass
 
 if __name__ == "__main__":
-    with open('../config/config.json') as data_file:
+    with open('/home/pi/Git/DoorAccessRpi/system/config/config.json') as data_file:
         config = json.load(data_file)
 
     main(config)

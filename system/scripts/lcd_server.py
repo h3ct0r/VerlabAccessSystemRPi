@@ -1,4 +1,8 @@
+#!/usr/bin/env python
+
 from multiprocessing.connection import Listener
+from threading import Thread
+from Queue import Queue
 import json
 import time
 import sys
@@ -6,6 +10,7 @@ import smbus
 import socket
 import fcntl
 import struct
+
 
 class LCDControl:
 
@@ -91,15 +96,48 @@ def get_ip_address(ifname):
         0x8915,  # SIOCGIFADDR
         struct.pack('256s', ifname[:15])
     )[20:24])
-
+    
+def reset_screen(lcd, queue):
+	last_update = 0
+	is_dirty = True
+	q_time = None
+	
+	while(True):
+		try:
+			q_time = queue.get_nowait()
+			if q_time is not None:
+				last_update = q_time
+				is_dirty = True
+		except Exception, e:
+			q_time = None
+		
+		ctime = int(time.time())
+		timediff = ctime - last_update
+		
+		if is_dirty and timediff > 5:
+			print 'reset screen...'
+			is_dirty = False
+			lcd.send_string_list(["**** VeRLab ****", "Vision& Robotics"])
+			
+		time.sleep(1)
+		pass
+	pass
 
 def main(cfg):
-
     lcd = LCDControl()
     address = ('localhost', cfg['lcd_port'])
     keep_running = True
     lcd.send_string_list(["Init LCD server", get_ip_address('eth0')])
-
+    
+    # Start reset thread
+    queue = Queue()
+    queue.put(int(time.time()))
+    t1 = Thread(target=reset_screen, args=(lcd, queue,))
+    t1.setDaemon(True)
+    t1.start()
+    
+    print '[LCD_SRV]', 'LCD server started and waiting for connections'
+    
     while keep_running:
         listener = Listener(address, authkey=cfg['process_passwd'].encode())
         conn = listener.accept()
@@ -120,7 +158,9 @@ def main(cfg):
                         else:
                             print '[ERROR]', 'Not a list or shutdown msg'
                             break
-
+					
+                    queue.put(int(time.time()))
+					
                     lcd.send_string_list(msg)
         except Exception as e:
             print '[ERROR]', e
@@ -131,7 +171,7 @@ def main(cfg):
     pass
 
 if __name__ == "__main__":
-    with open('../config/config.json') as data_file:
+    with open('/home/pi/Git/DoorAccessRpi/system/config/config.json') as data_file:
         config = json.load(data_file)
 
     main(config)
