@@ -2,12 +2,12 @@
 
 ### BEGIN INIT INFO
 # Provides:          lcd_server
-# Required-Start:    $remote_fs $syslog
-# Required-Stop:     $remote_fs $syslog
-# Default-Start:     2 3 4 5
+# Required-Start:    $remote_fs $all
+# Required-Stop:     $remote_fs $all
+# Default-Start:     5
 # Default-Stop:      0 1 6
-# Short-Description: LCD server to put LCD messages
-# Description:       LCD server to put LCD messages
+# Short-Description: LCD server to show LCD messages
+# Description:       LCD server to show LCD messages
 ### END INIT INFO
 
 # Change the next 3 lines to suit where you install your script and what you want to call it

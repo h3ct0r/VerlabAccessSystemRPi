@@ -4,7 +4,7 @@
 # Provides:          relay_server
 # Required-Start:    $remote_fs $syslog
 # Required-Stop:     $remote_fs $syslog
-# Default-Start:     2 3 4 5
+# Default-Start:     5
 # Default-Stop:      0 1 6
 # Short-Description: RELAY server to open the door
 # Description:       RELAY server to open the door
