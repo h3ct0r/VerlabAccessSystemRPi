@@ -9,6 +9,8 @@ from MFRC522 import MFRC522
 import os
 import socket
 from threading import Thread
+import logging
+import logging.handlers
 
 
 def check_uid_access(uid):
@@ -22,28 +24,35 @@ def check_uid_access(uid):
         data = json.load(data_file)
 
     for k,v in data.items():
-		if v['accessToken'] == str(uid):
-			return v
+        if v['accessToken'] == str(uid):
+            return v
 
     return None
 
 def send_socket_msg(address, key, msg):
-	try:
-		conn_lcd = Client(address, authkey=key)
-		conn_lcd.send(msg)
-		conn_lcd.close()
-	except Exception as e:
-		print '[ERROR]', e
-	pass
+    try:
+        conn_lcd = Client(address, authkey=key)
+        conn_lcd.send(msg)
+        conn_lcd.close()
+    except Exception as e:
+        print '[ERROR]', e
+    pass
 
 def main(cfg):
+    logger = logging.getLogger('RFID_SRV')
+    logger.setLevel(logging.DEBUG)
+    handler = logging.handlers.SysLogHandler(address = '/dev/log')
+    formatter = logging.Formatter('%(name)s - %(levelname)s - %(message)s')
+    handler.setFormatter(formatter)
+    logger.addHandler(handler)
+    
     rfid = MFRC522.MFRC522()
 
     address_relay = ('localhost', cfg['relay_port'])
     address_lcd = ('localhost', cfg['lcd_port'])
     keep_running = True
     
-    print '[RFID_SERVER]', 'RFID server started and waiting for RFID tags'
+    logger.info('RFID server started and waiting for RFID tags')
 
     while keep_running:
         # Scan for cards
@@ -60,24 +69,25 @@ def main(cfg):
                 uid.pop()
 
             hex_uid = ''.join(format(x, 'x') for x in uid)
-            print '[RFID_SERVER]', 'UID:', uid, hex_uid
+            logger.debug('UID: {} {}'.format(uid, hex_uid))
 
             check_res = check_uid_access(hex_uid)
             if check_res is not None:
-                print '[RFID_SERVER]', 'Access granted'
+                logger.info('Access granted')
                 try:
-					t1 = Thread(target=send_socket_msg, args=(address_relay, cfg['process_passwd'].encode(), 'open_door'))
-					t1.setDaemon(True)
-					t1.start()
-					
-					t2 = Thread(target=send_socket_msg, args=(address_lcd, cfg['process_passwd'].encode(), ["Welcome:", check_res["givenName"]]))
-					t2.setDaemon(True)
-					t2.start()
+                    t1 = Thread(target=send_socket_msg, args=(address_relay, cfg['process_passwd'].encode(), 'open_door'))
+                    t1.setDaemon(True)
+                    t1.start()
+                    
+                    t2 = Thread(target=send_socket_msg, args=(address_lcd, cfg['process_passwd'].encode(), ["Welcome:", check_res["givenName"]]))
+                    t2.setDaemon(True)
+                    t2.start()
                 except Exception as e:
-                    print '[ERROR]', e
+                    if str(e) != "":
+                        logger.debug(e)
                 # TODO: Play access granted
             else:
-                print '[RFID_SERVER]', 'Access denied'
+                logger.debug('Access denied')
                 t1 = Thread(target=send_socket_msg, args=(address_lcd, cfg['process_passwd'].encode(), [" --- ALERT --- ", " ACCESS DENIED "]))
                 t1.setDaemon(True)
                 t1.start()

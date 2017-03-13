@@ -5,9 +5,18 @@ import json
 import time
 import sys
 import RPi.GPIO as GPIO
+import logging
+import logging.handlers
 
 
 def main(cfg):
+    logger = logging.getLogger('RELAY_SRV')
+    logger.setLevel(logging.DEBUG)
+    handler = logging.handlers.SysLogHandler(address = '/dev/log')
+    formatter = logging.Formatter('%(name)s - %(levelname)s - %(message)s')
+    handler.setFormatter(formatter)
+    logger.addHandler(handler)
+
     GPIO.setmode(GPIO.BCM)
     GPIO.cleanup()
     GPIO.setup(cfg['gpio_pin_relay'], GPIO.OUT)
@@ -15,18 +24,18 @@ def main(cfg):
     address = ('localhost', cfg['relay_port'])
     keep_running = True
     
-    print '[RELAY_SRV]', 'Relay server started and waiting for connections'
-
+    logger.info('Relay server started and waiting for connections')
+    
     while keep_running:
         listener = Listener(address, authkey=cfg['process_passwd'].encode())
         conn = listener.accept()
-        print '[RELAY_SRV]', 'connection accepted from', listener.last_accepted
+        logger.debug('connection accepted from {}'.format(listener.last_accepted))
 
         try:
             while True:
                 if conn.poll():
                     msg = conn.recv()
-                    print '[RELAY_SRV]', 'Received:', msg
+                    logger.debug('Received: {}'.format(msg))
 
                     if msg == 'shutdown':
                         conn.close()
@@ -34,7 +43,7 @@ def main(cfg):
                         listener.close()
                         break
                     if msg == 'open_door':
-                        print '[RELAY_SRV]', 'Opening door', time.time()
+                        logger.debug('Opening door: {}'.format(time.time()))
                         for i in xrange(cfg['relay_pulses']):
                             GPIO.output(cfg['gpio_pin_relay'], GPIO.LOW)
                             time.sleep(cfg['relay_ms_between_pulses'])
@@ -42,7 +51,8 @@ def main(cfg):
                             time.sleep(cfg['relay_ms_between_pulses'])
 
         except Exception as e:
-            print '[ERROR]', e
+            if str(e) != "":
+                logger.error(e)
             listener.close()
 
     GPIO.cleanup()

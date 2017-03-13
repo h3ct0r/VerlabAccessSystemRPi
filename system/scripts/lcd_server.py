@@ -10,6 +10,9 @@ import smbus
 import socket
 import fcntl
 import struct
+import logging
+import logging.handlers
+import subprocess
 
 
 class LCDControl:
@@ -90,14 +93,11 @@ class LCDControl:
 
 
 def get_ip_address(ifname):
-    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    return socket.inet_ntoa(fcntl.ioctl(
-        s.fileno(),
-        0x8915,  # SIOCGIFADDR
-        struct.pack('256s', ifname[:15])
-    )[20:24])
+    p = subprocess.Popen("ifconfig {} | grep 'inet addr' | cut -d ':' -f 2 | cut -d ' ' -f 1".format(ifname), stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+    out, err = p.communicate()
+    return out.strip()
     
-def reset_screen(lcd, queue):
+def reset_screen(logger, lcd, queue):
 	last_update = 0
 	is_dirty = True
 	q_time = None
@@ -111,11 +111,11 @@ def reset_screen(lcd, queue):
 		except Exception, e:
 			q_time = None
 		
-		ctime = int(time.time())
-		timediff = ctime - last_update
+		ctime = float(time.time())
+		timediff = abs(ctime - last_update)
 		
 		if is_dirty and timediff > 5:
-			print 'reset screen...'
+			logger.debug('Resetting screen isdirty:{}, ctime{}, timediff:{}'.format(is_dirty, ctime, timediff))
 			is_dirty = False
 			lcd.send_string_list(["**** VeRLab ****", "Vision& Robotics"])
 			
@@ -124,30 +124,41 @@ def reset_screen(lcd, queue):
 	pass
 
 def main(cfg):
+    logger = logging.getLogger('RFID_SRV')
+    logger.setLevel(logging.DEBUG)
+    handler = logging.handlers.SysLogHandler(address = '/dev/log')
+    formatter = logging.Formatter('%(name)s - %(levelname)s - %(message)s')
+    handler.setFormatter(formatter)
+    logger.addHandler(handler)
+    
+    logger.debug('Starting lcd control...')
     lcd = LCDControl()
     address = ('localhost', cfg['lcd_port'])
     keep_running = True
-    lcd.send_string_list(["Init LCD server", get_ip_address('eth0')])
+    logger.debug('Sending init LCD...')
+    ip_addr= get_ip_address('eth0')
+    logger.debug('IP: {}'.format(ip_addr))
+    lcd.send_string_list(["Init LCD server", ip_addr])
     
     # Start reset thread
     queue = Queue()
     queue.put(int(time.time()))
-    t1 = Thread(target=reset_screen, args=(lcd, queue,))
+    t1 = Thread(target=reset_screen, args=(logger, lcd, queue,))
     t1.setDaemon(True)
     t1.start()
     
-    print '[LCD_SRV]', 'LCD server started and waiting for connections'
+    logger.info('LCD server started and waiting for connections')
     
     while keep_running:
         listener = Listener(address, authkey=cfg['process_passwd'].encode())
         conn = listener.accept()
-        print '[LCD_SRV]', 'connection accepted from', listener.last_accepted
+        logger.debug('connection accepted from {}'.format(listener.last_accepted))
 
         try:
             while True:
                 if conn.poll():
                     msg = conn.recv()
-                    print '[LCD_SRV]', 'Received:', msg
+                    logger.debug('Received: {}'.format(msg))
 
                     if not isinstance(msg, list):
                         if msg == 'shutdown':
@@ -156,14 +167,15 @@ def main(cfg):
                             listener.close()
                             break
                         else:
-                            print '[ERROR]', 'Not a list or shutdown msg'
+                            logger.debug('Not a list or shutdown msg')
                             break
-					
-                    queue.put(int(time.time()))
-					
+
+                    queue.put(float(time.time()))
+
                     lcd.send_string_list(msg)
         except Exception as e:
-            print '[ERROR]', e
+            if str(e) != "":
+                logger.error(e)
             listener.close()
 
     listener.close()
@@ -174,5 +186,4 @@ if __name__ == "__main__":
     with open('/home/pi/Git/DoorAccessRpi/system/config/config.json') as data_file:
         config = json.load(data_file)
 
-    time.sleep(10) # todo: Fix this
     main(config)
