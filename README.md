@@ -41,6 +41,7 @@ To do, based on https://www.sunfounder.com/wiki/index.php?title=How_to_Use_an_RF
 - `sudo apt-get install libsasl2-dev python-dev libldap2-dev libssl-dev`
 - `sudo pip install python-ldap`
 - `sudo update-rc.d lcd_daemon.sh defaults`
+- Add to /etc/crontab `*/5 * * * * pi cd /home/pi/Git/DoorAccessRpi/system/cron && python synch_RFID.py`
 
 License
 ----
