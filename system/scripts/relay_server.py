@@ -46,9 +46,9 @@ def main(cfg):
                         logger.debug('Opening door: {}'.format(time.time()))
                         for i in xrange(cfg['relay_pulses']):
                             GPIO.output(cfg['gpio_pin_relay'], GPIO.LOW)
-                            time.sleep(cfg['relay_ms_between_pulses'])
+                            time.sleep(cfg['relay_ms_on'])
                             GPIO.output(cfg['gpio_pin_relay'], GPIO.HIGH)
-                            time.sleep(cfg['relay_ms_between_pulses'])
+                            time.sleep(cfg['relay_ms_off'])
 
         except Exception as e:
             if str(e) != "":

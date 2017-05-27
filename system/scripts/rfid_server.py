@@ -79,22 +79,24 @@ def main(cfg):
                     t1.setDaemon(True)
                     t1.start()
                     
-                    t2 = Thread(target=send_socket_msg, args=(address_lcd, cfg['process_passwd'].encode(), ["Welcome:", check_res["givenName"]]))
-                    t2.setDaemon(True)
-                    t2.start()
+                    #t2 = Thread(target=send_socket_msg, args=(address_lcd, cfg['process_passwd'].encode(), ["Welcome:", check_res["givenName"]]))
+                    #t2.setDaemon(True)
+                    #t2.start()
                 except Exception as e:
                     if str(e) != "":
                         logger.debug(e)
                 # TODO: Play access granted
             else:
                 logger.debug('Access denied')
-                t1 = Thread(target=send_socket_msg, args=(address_lcd, cfg['process_passwd'].encode(), [" --- ALERT --- ", " ACCESS DENIED "]))
-                t1.setDaemon(True)
-                t1.start()
+                #t1 = Thread(target=send_socket_msg, args=(address_lcd, cfg['process_passwd'].encode(), [" --- ALERT --- ", " ACCESS DENIED "]))
+                #t1.setDaemon(True)
+                #t1.start()
                 # TODO: Play access denied
                 pass
             
-            time.sleep(1)           
+            time.sleep(1)
+        else:
+            time.sleep(0.2)           
 
     GPIO.cleanup()
     pass
