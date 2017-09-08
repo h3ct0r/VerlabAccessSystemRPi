@@ -88,15 +88,15 @@ After the Raspberry Pi is prepared the next step is performed on the end user ma
 - Use a RFID card and test it on the device. If all went OK you will see DEBUG information on the log.
 
 
-This installation is lousy based on [How to Rpi RFID](https://www.sunfounder.com/wiki/index.php?title=How_to_Use_an_RFID_RC522_on_Raspberry_Pi) and [Rpi services](http://blog.scphillips.com/posts/2013/07/getting-a-python-script-to-run-in-the-background-as-a-service-on-boot/)
+This installation was lousy based on [How to Rpi RFID](https://www.sunfounder.com/wiki/index.php?title=How_to_Use_an_RFID_RC522_on_Raspberry_Pi) and [Rpi services](http://blog.scphillips.com/posts/2013/07/getting-a-python-script-to-run-in-the-background-as-a-service-on-boot/).
 
 ### Todos
 ----
 
- - RFID robust search
- - Face detection
- - Web config interface
- - Write Tests
+ - RFID robust search.
+ - Face detection (?).
+ - Web config interface.
+ - Write moar tests.
 
 License
 ----
