@@ -104,8 +104,17 @@ After the Raspberry Pi is prepared the next step is performed on the end user ma
     
 - Use a RFID card and test it on the device. If all went OK you will see DEBUG information on the log.
 
-
 This installation was lousy based on [How to Rpi RFID](https://www.sunfounder.com/wiki/index.php?title=How_to_Use_an_RFID_RC522_on_Raspberry_Pi) and [Rpi services](http://blog.scphillips.com/posts/2013/07/getting-a-python-script-to-run-in-the-background-as-a-service-on-boot/).
+
+### Manage services
+---
+
+The system is based on daemons, to restart a service the commands are:
+- `sudo /etc/init.d/relay_server.sh restart`
+- `sudo /etc/init.d/rfid_server.sh restart`
+
+All services log to *syslog* so to verify installation or real time operation just need to:
+- `sudo tail -f /var/log/syslog`
 
 ### Todos
 ----
