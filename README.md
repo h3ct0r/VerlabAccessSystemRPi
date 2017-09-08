@@ -59,32 +59,49 @@ After the Raspberry Pi is prepared the next step is performed on the end user ma
 
 ##### On the user machine
 - Install local dependencies to begin installation:
+
     `sudo apt install git ansible`
 
 - Then clone this repository:
+
     `cd ~/`
+    
     `git clone https://github.com/h3ct0r/VerlabAccessSystemRPi`
+    
     `cd ~/VerlabAccessSystemRPi`
 
 - Prepare Ansible and define the hosts where we will connect and perform the install:
+    
     `nano ansible_install/playbooks/hosts`
+    
     *Edit the fields **HOST_IP_ADDRESS** and **APPLIANCE_PASSWORD***
 
 - Edit the configurations for the system on the *config.json* file:
+    
     `nano system/config/config.json.rename`
+    
     You must set at least **ldap_uri**, **ldap_username**, **ldap_passwd** and **ldap_basedn**.
 
 - Then run the installation:
+    
     `cd ansible_install/playbooks/`
+    
     `ansible-playbook -s -v full_raspi_config.yaml`
 
 ##### Finalizing installation
+
 - Enter the device machine via SSH:
+    
     `ssh pi@HOST_IP_ADDRESS`
+    
 - Open the syslog file:
+
     `sudo tail -f /var/log/syslog`
+    
 - Test if there are I2C devices connected:
+
     `sudo i2cdetect -y 1`
+    
 - Use a RFID card and test it on the device. If all went OK you will see DEBUG information on the log.
 
 
