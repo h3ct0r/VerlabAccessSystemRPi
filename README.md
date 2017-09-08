@@ -127,4 +127,4 @@ All services log to *syslog* so to verify installation or real time operation ju
 License
 ----
 
-GPLv3
+Custom license, please see [Our license agreement](https://github.com/h3ct0r/VerlabAccessSystemRPi/blob/master/LICENSE) first before using this software.
