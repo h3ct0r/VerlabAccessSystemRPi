@@ -1,0 +1,2 @@
+[raspiserver]
+doorserver ansible_ssh_host=HOST_IP_ADDRESS ansible_ssh_port=22 ansible_ssh_pass=APPLIANCE_PASSWORD

@@ -14,7 +14,7 @@ import logging.handlers
 
 
 def check_uid_access(uid):
-    data_path = '/home/pi/Git/DoorAccessRpi/system/data/data.json'
+    data_path = '/var/doorsystem/data/data.json'
 
     if not os.path.isfile(data_path):
         print '[RFID_SERVER]', 'Cannot find RFID data'
@@ -103,7 +103,7 @@ def main(cfg):
 
 
 if __name__ == "__main__":
-    with open('/home/pi/Git/DoorAccessRpi/system/config/config.json') as data_file:
+    with open('/var/doorsystem/config/config.json') as data_file:
         config = json.load(data_file)
 
     main(config)

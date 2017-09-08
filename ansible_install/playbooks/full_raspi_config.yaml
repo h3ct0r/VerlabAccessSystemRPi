@@ -1,0 +1,13 @@
+---
+- include: python2.yaml
+
+- name: Configuration of the Raspi door access
+  hosts: raspiserver
+  become: yes
+  become_method: sudo
+
+- include: apt_dependencies.yaml
+- include: python_dependencies.yaml
+- include: configure_spi_i2c.yaml
+- include: copy_files.yaml
+- include: cron_user_synch.yaml

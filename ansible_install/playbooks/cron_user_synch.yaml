@@ -1,0 +1,12 @@
+---
+- name: Configure a crontab to synchronize user data
+  hosts: raspiserver
+  become: yes
+  become_method: sudo
+  tasks:
+    - name: Creates five minute cron to synch users
+      cron: minute="*/5"
+            name="User token access synch"
+            cron_file=synch_users_rfid_ldap.conf
+            user=root
+            job="cd /var/doorsystem/src && /usr/bin/python synch_RFID.py"

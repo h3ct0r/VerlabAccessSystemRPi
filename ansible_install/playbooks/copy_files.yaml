@@ -1,0 +1,56 @@
+---
+- name: Transfer system files
+  hosts: raspiserver
+  sudo: yes
+  tasks:
+    - name: Creates directory
+      file: path=/var/doorsystem state=directory owner=root group=root mode=0755
+
+    - name: Creates directory
+      file: path=/var/doorsystem/config state=directory owner=root group=root mode=0755
+
+    - name: Creates directory
+      file: path=/var/doorsystem/data state=directory owner=root group=root mode=0755
+
+    - name: Creates directory
+      file: path=/var/doorsystem/src/MFRC522 state=directory owner=root group=root mode=0755
+
+    - name: Transfer config
+      copy: src=../../system/config/config.json.rename dest=/var/doorsystem/config/config.json mode=0755
+
+    - name: Transfer MFRC522 script init
+      copy: src=../../system/scripts/MFRC522/__init__.py dest=/var/doorsystem/src/MFRC522/__init__.py mode=0755
+
+    - name: Transfer MFRC522 script
+      copy: src=../../system/scripts/MFRC522/MFRC522.py dest=/var/doorsystem/src/MFRC522/MFRC522.py mode=0755
+
+    - name: Transfer relay script
+      copy: src=../../system/scripts/relay_server.py dest=/var/doorsystem/src/relay_server.py mode=0755
+
+    - name: Transfer rfid script
+      copy: src=../../system/scripts/rfid_server.py dest=/var/doorsystem/src/rfid_server.py mode=0755
+
+    - name: Transfer cron
+      copy: src=../../system/cron/synch_RFID.py dest=/var/doorsystem/src/synch_RFID.py mode=0755
+
+    - name: Transfer relay daemon
+      copy: src=../../system/daemons/relay_daemon.sh dest=/etc/init.d/relay_daemon.sh mode=0755
+
+    - name: Set relay_daemon.sh to run on startup
+      shell: update-rc.d relay_daemon.sh defaults
+      sudo: true
+
+    - name: Transfer rfid daemon
+      copy: src=../../system/daemons/rfid_daemon.sh dest=/etc/init.d/rfid_daemon.sh mode=0755
+
+    - name: Set rfid_daemon.sh to run on startup
+      shell: update-rc.d rfid_daemon.sh defaults
+      sudo: true
+
+    - name: Execute the relay_daemon
+      command: /etc/init.d/relay_daemon.sh restart
+      sudo: true
+
+    - name: Execute the rfid_daemon
+      command: /etc/init.d/rfid_daemon.sh restart
+      sudo: true

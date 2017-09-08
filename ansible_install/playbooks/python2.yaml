@@ -1,0 +1,9 @@
+---
+- name: Add a python2 binaries
+  hosts: raspiserver
+  become: yes
+  become_method: sudo
+  gather_facts: no
+  pre_tasks:
+    - name: install python
+      raw: sudo apt-get update && sudo apt-get -y install python-simplejson

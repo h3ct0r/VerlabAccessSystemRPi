@@ -1,0 +1,10 @@
+---
+- name: Transfer and execute a script to config SPI and I2C.
+  hosts: raspiserver
+  sudo: yes
+  tasks:
+     - name: Transfer the script
+       copy: src=files/rpi_activate_spi_i2c.sh dest=/tmp/rpi_activate_spi_i2c.sh mode=0777
+
+     - name: Execute the script
+       command: bash /tmp/rpi_activate_spi_i2c.sh

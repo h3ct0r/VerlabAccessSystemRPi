@@ -49,11 +49,11 @@ def main(cfg):
 
     l.unbind_s()
 
-    with open('../data/data.json', 'w') as outfile:
+    with open('/var/doorsystem/data/data.json', 'w') as outfile:
         json.dump(result_query, outfile)
 
 if __name__ == "__main__":
-    with open('../config/config.json') as data_file:
+    with open('/var/doorsystem/config/config.json') as data_file:
         config = json.load(data_file)
 
     main(config)

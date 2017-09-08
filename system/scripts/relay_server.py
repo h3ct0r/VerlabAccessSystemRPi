@@ -60,7 +60,7 @@ def main(cfg):
     pass
 
 if __name__ == "__main__":
-    with open('/home/pi/Git/DoorAccessRpi/system/config/config.json') as data_file:
+    with open('/var/doorsystem/config/config.json') as data_file:
         config = json.load(data_file)
 
     main(config)

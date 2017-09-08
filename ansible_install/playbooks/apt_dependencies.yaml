@@ -1,0 +1,21 @@
+---
+- name: install dependencies
+  hosts: raspiserver
+  gather_facts: True
+  sudo: True
+  tasks:
+    - name: Install basic packages
+      apt: name={{ item }} update_cache=yes state=latest
+      with_items:
+        - build-essential
+        - git
+        - python-pip
+        - mcrypt
+        - curl
+        - python-smbus
+        - libsasl2-dev
+        - python-dev 
+        - libldap2-dev
+        - libssl-dev
+        - python-ldap
+        - python-dev
