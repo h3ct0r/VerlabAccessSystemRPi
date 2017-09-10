@@ -1,7 +1,5 @@
 # VeRLab Access System - RPi/RFID/Face Recognition (?)
 
-[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-
 [![N|Solid](http://www.verlab.dcc.ufmg.br/verlab/wp-content/uploads/2014/06/logo-verlab-small-transp-300x572.png)](www.verlab.dcc.ufmg.br)
 
 This is the main repo of the Verlab Access System using a Raspberry Pi as main hardware. The authentication is based on RFID or by Face Recognition (beta). List of valid users is updated from an LDAP server and maintained on the device for offline verification.
@@ -53,7 +51,8 @@ The installation begins on the raspberry Pi, first installing the image and then
 - Connect a network cable on the Raspberry pi.
 - Perform the *Hardware Installation* (of the previous section).
 - Boot the SD card and activate SSH.
-- Get the **hostname, password** of this machine. *We will use this later*.
+- Change the default password for the *pi* user of this device.
+- Write the **hostname, password** of this machine. *We will use this later*.
 
 After the Raspberry Pi is prepared the next step is performed on the end user machine. **This GitHub repo is downloaded on the user machine and NOT on the Raspberry directly.**
 
