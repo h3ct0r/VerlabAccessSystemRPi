@@ -59,7 +59,8 @@ After the Raspberry Pi is prepared the next step is performed on the end user ma
 ##### On the user machine
 - Install local dependencies to begin installation:
 
-    `sudo apt install git ansible`
+    `sudo apt install git ansible sshpass`
+
 
 - Then clone this repository:
 
