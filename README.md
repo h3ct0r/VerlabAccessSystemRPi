@@ -27,16 +27,24 @@ This access sytem need the following hardware to work properly:
 
 RFID reader pins:
 
-|Name|Pin#|Pin Name|
+|Signal Name|J8 Pin#|RPi Pin Name|
 |---|---|---|
-|VCC|1  |3V3|
-|RST|22 |GPIO25   |
-|GND|Any|Any|Ground
+|VCC|17|3V3|
+|RST|22|GPIO25|
+|GND|20|Ground|
 |MISO|21|GPIO9|
 |MOSI|19|GPIO10|
-|sCK|23|GPIO11|
-|NSS|24|GPIO8|
-|IRQ|None|None|
+|SCK|23|GPIO11|
+|SDA|24|GPIO8|
+|IRQ|None|Not Connected|
+
+Relay pins:
+
+|Signal Name|J8 Pin#|RPi Pin Name|
+|---|---|---|
+|VCC|4|5V|
+|GND|6|Ground|
+|Relay_on|7|GPIO4|
 
 ### Software Installation
 ----
