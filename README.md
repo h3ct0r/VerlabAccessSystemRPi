@@ -25,7 +25,7 @@ This access sytem need the following hardware to work properly:
 ### Hardware Installation
 ----
 
-RFID reader pins:
+RFID reader PCB pins:
 
 |Signal Name|J8 Pin#|RPi Pin Name|
 |---|---|---|
@@ -38,7 +38,7 @@ RFID reader pins:
 |SDA|24|GPIO8|
 |IRQ|None|Not Connected|
 
-Relay pins:
+Relay PCB pins:
 
 |Signal Name|J8 Pin#|RPi Pin Name|
 |---|---|---|
