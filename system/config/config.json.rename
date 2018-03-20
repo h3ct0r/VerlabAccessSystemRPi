@@ -4,9 +4,10 @@
   "ldap_passwd": "passwd12345",
   "ldap_basedn": "ou=Persons,dc=ufmg,dc=br",
   "process_passwd": "e23fi558gh",
-  "gpio_pin_relay": 7,
-  "relay_pulses": 20,
-  "relay_ms_between_pulses": 0.2,
+  "gpio_pin_relay": 4,
+  "relay_pulses": 3,
+  "relay_ms_on": 0.8,
+  "relay_ms_off": 0.4,
   "relay_port": 6001,
   "lcd_port": 6002
 }
