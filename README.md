@@ -58,9 +58,9 @@ The installation begins on the raspberry Pi, first installing the image and then
 - Download the *img* file for **Raspbian LITE** and install it on an SD card [Raspbian downloads](https://www.raspberrypi.org/downloads/raspbian/).
 - Connect a network cable on the Raspberry pi.
 - Perform the *Hardware Installation* (of the previous section).
-- Boot the SD card and activate SSH.
-- Change the default password for the *pi* user of this device.
-- Write the **hostname, password** of this machine. *We will use this later*.
+- Boot the SD card and activate SSH using [raspi-config utility](https://www.raspberrypi.org/documentation/configuration/raspi-config.md)).
+- Change the default password for the *pi* user of this device (also possible using [raspi-config utility](https://www.raspberrypi.org/documentation/configuration/raspi-config.md)).
+- Take note of the **hostname and password** you set to this device. *We will need them later*.
 
 After the Raspberry Pi is prepared the next step is performed on the end user machine. **This GitHub repo is downloaded on the user machine and NOT on the Raspberry directly.**
 
