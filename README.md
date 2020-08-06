@@ -4,6 +4,12 @@
 
 This is the main repo of the Verlab Access System using a Raspberry Pi as main hardware. The authentication is based on RFID or by Face Recognition (beta). List of valid users is updated from an LDAP server and maintained on the device for offline verification.
 
+### Authors
+----
+- [Hector Azpurua](https://github.com/h3ct0r)
+- [Elerson Rubens](https://github.com/elerson)
+- [Mauricio Ferrari](https://github.com/mauferrari)
+
 ### Why using Rpi instead of Arduino?
 ----
 
