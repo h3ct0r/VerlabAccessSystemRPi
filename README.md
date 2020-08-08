@@ -32,26 +32,7 @@ This access sytem need the following hardware to work properly:
 ----
 [Hardware folder](/hardware) has more information about connections, 3D Printer files, and assembly. 
 
-RFID reader PCB pins:
 
-|Signal Name|J8 Pin#|RPi Pin Name|
-|---|---|---|
-|VCC|17|3V3|
-|RST|22|GPIO25|
-|GND|20|Ground|
-|MISO|21|GPIO9|
-|MOSI|19|GPIO10|
-|SCK|23|GPIO11|
-|SDA|24|GPIO8|
-|IRQ|None|Not Connected|
-
-Relay PCB pins:
-
-|Signal Name|J8 Pin#|RPi Pin Name|
-|---|---|---|
-|VCC|4|5V|
-|GND|6|Ground|
-|Relay_on|7|GPIO4|
 
 ### Software Installation
 ----
