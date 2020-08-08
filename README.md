@@ -17,21 +17,20 @@ We love arduino too, but our previous project using Arduino and using the compat
 
 Using the full power of a Raspberry Pi, it allow us to develop other methods of authentication and/or implement sound, screens, logging and other kind of funcionalities without the 16Kb space limitation. And since all Raspi-berrys are made from the same vendor and quality, we can be certain of the hardware reliability.
 
-### Hardware List
-----
-
-This access sytem need the following hardware to work properly:
-
-* *Raspberry Pi* - version 2 or up (We tested Pi2b and 3).
-* *RFID Reader* - use the best RFID readers available, we use the **red ones from Funduino** (available fromm MercadoLivre.com.br sellers, look specifically the red ones).
-* *Door lock* - we use one from HDL ([FEC-91 LA](http://www.hdl.com.br/produtos/fechaduras/fecho-eletrico/fecho-eletrico-mod-fec-91-la-espelho-longo-trinco-ajustavel)).
-* *Relay switch* - We use common relays used with arduino.
-* *Jumper cables* - a lot of them.
-
 ### Hardware Information
 ----
 [Hardware folder](/hardware) has more information about connections, 3D Printer files, and assembly. 
 
+#### Components List
+
+This access system needs the following parts to work properly:
+
+* *Raspberry Pi* - version 2 or up (We tested Pi2b and 3).
+* *RFID Reader* - use the best RFID readers available, we use the **red ones from Funduino** (available fromm MercadoLivre.com.br sellers, look specifically the red ones).
+* *Door lock* - we use one from HDL ([FEC-91 LA](http://www.hdl.com.br/produtos/fechaduras/fecho-eletrico/fecho-eletrico-mod-fec-91-la-espelho-longo-trinco-ajustavel)).
+* *Door lock power supply*
+* *Relay switch* - We use common relays used with arduino.
+* *Jumper cables* - a lot of them.
 
 
 ### Software Installation
