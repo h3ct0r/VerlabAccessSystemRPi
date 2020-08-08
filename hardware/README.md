@@ -31,4 +31,4 @@ PS: The system casing is important to be in a safe place, just for authorized pe
 Note: This ethernet cable is just a medium for the signals, it doesn't transmit network ethernet data!
 
 
-<img src="/casing/assembly-example/P_20170626_141153-mini.jpg" width="400">
+<img src="/hardware/assembly-example/P_20170626_141153-mini.jpg" width="400">
