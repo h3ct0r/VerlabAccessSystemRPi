@@ -19,7 +19,7 @@ Using the full power of a Raspberry Pi, it allow us to develop other methods of 
 
 ### Hardware Information
 ----
-[**Hardware folder**](/hardware) has more information about connections, 3D Printer files, and assembly. 
+[**Hardware folder**](/hardware) has more information about 3D Printer files, connections, and assembly. 
 
 #### Components List
 
@@ -30,7 +30,7 @@ This access system needs the following parts to work properly:
 * *Door lock* - we used one from HDL ([FEC-91 LA](http://www.hdl.com.br/produtos/fechaduras/fecho-eletrico/fecho-eletrico-mod-fec-91-la-espelho-longo-trinco-ajustavel)).
 * *Door lock Power Supply* - we used the HDL's power supply compatible with our door lock ([TRA-400](https://www.hdl.com.br/produtos/fechaduras/acessorios/fonte-tra-400-para-fechaduras-porteiros-e-centrais))
 * *Relay switch* - We used common arduino relays.
-* *Jumper cables* - Some of them.
+* *Jumper cables* - a lot of them.
 * Probably, will be necessary other parts for your building infrastructure that are not listed here (e.g. wall mounted plug for power, networking, electric cables, etc)
 
 ### Software Installation
