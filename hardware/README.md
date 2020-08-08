@@ -1,9 +1,10 @@
 # [VeRLab Access System](https://github.com/h3ct0r/VerlabAccessSystemRPi/)
+[![](https://www.verlab.dcc.ufmg.br/wp-content/uploads/2019/05/SVG_Verlab_210x86dpi.png)](https://www.verlab.dcc.ufmg.br)
+
 # Hardware Information
 
 ## RPi Connections
-----
-
+---
 RFID reader PCB pins:
 
 |Signal Name|J8 Pin#|RPi Pin Name|
