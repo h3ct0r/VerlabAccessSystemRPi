@@ -1,4 +1,4 @@
-# [VeRLab Access System](/README.md) - Casing and Assembly Examples
+# [VeRLab Access System](https://github.com/h3ct0r/VerlabAccessSystemRPi/) - Casing and Assembly Examples
 
 ## Casing files
 The casing has two parts: cover and case. There are some different file extensions:
@@ -23,7 +23,7 @@ The casing has two parts: cover and case. There are some different file extensio
 PS: The system casing is important to be in a safe place, just for authorized persons, because there are security data saved inside the SD Card.
 
 
-<img src="/hardware/assembly-example/P_20170626_152344-mini.jpg" width="400">
+<img src="/hardware/assembly-example/P_20170626_152344-mini2.jpg" width="400">
 <img src="/hardware/assembly-example/P_20170626_152014-mini.jpg" width="400">
 
 - An Ethernet cable and RJ45 panel connectors were used to connect the RFID reader from the wall outside the room to the System casing. in our practical experience, it was the best solution to make the connection of the 7 SPI signals in a robust way and avoiding bad contact. 
