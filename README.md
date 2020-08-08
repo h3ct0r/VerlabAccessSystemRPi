@@ -28,8 +28,9 @@ This access sytem need the following hardware to work properly:
 * *Relay switch* - We use common relays used with arduino.
 * *Jumper cables* - a lot of them.
 
-### Hardware Installation
+### Hardware Information
 ----
+[Hardware folder](/hardware) has more information about connections, 3D Printer files, and assembly. 
 
 RFID reader PCB pins:
 
