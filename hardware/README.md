@@ -1,6 +1,33 @@
-# [VeRLab Access System](https://github.com/h3ct0r/VerlabAccessSystemRPi/) - Casing and Assembly Examples
+# [VeRLab Access System](https://github.com/h3ct0r/VerlabAccessSystemRPi/)
+# Hardware Information
+
+## Conections
+----
+
+RFID reader PCB pins:
+
+|Signal Name|J8 Pin#|RPi Pin Name|
+|---|---|---|
+|VCC|17|3V3|
+|RST|22|GPIO25|
+|GND|20|Ground|
+|MISO|21|GPIO9|
+|MOSI|19|GPIO10|
+|SCK|23|GPIO11|
+|SDA|24|GPIO8|
+|IRQ|None|Not Connected|
+
+Relay PCB pins:
+
+|Signal Name|J8 Pin#|RPi Pin Name|
+|---|---|---|
+|VCC|4|5V|
+|GND|6|Ground|
+|Relay_on|7|GPIO4|
+
 
 ## Casing files
+---
 The casing has two parts: cover and case. There are some different file extensions:
 
 - *.stl: 3D model files, that could be loaded in a slicer software and used to print your casing with a 3D printer.
@@ -16,7 +43,7 @@ The casing has two parts: cover and case. There are some different file extensio
 
 
 ## Assembly example
-
+---
 - Casing and parts mounted in a place inside the room. Its
   necessary a wall-mounted power plug, and a network access plug to control the system remotely.
 
