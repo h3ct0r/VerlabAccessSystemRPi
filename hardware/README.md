@@ -1,7 +1,7 @@
 # [VeRLab Access System](https://github.com/h3ct0r/VerlabAccessSystemRPi/)
 # Hardware Information
 
-## Conections
+## RPi Connections
 ----
 
 RFID reader PCB pins:
