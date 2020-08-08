@@ -19,7 +19,7 @@ Using the full power of a Raspberry Pi, it allow us to develop other methods of 
 
 ### Hardware Information
 ----
-[Hardware folder](/hardware) has more information about connections, 3D Printer files, and assembly. 
+[**Hardware folder**](/hardware) has more information about connections, 3D Printer files, and assembly. 
 
 #### Components List
 
@@ -27,10 +27,10 @@ This access system needs the following parts to work properly:
 
 * *Raspberry Pi* - version 2 or up (We tested Pi2b and 3).
 * *RFID Reader* - use the best RFID readers available, we use the **red ones from Funduino** (available fromm MercadoLivre.com.br sellers, look specifically the red ones).
-* *Door lock* - we use one from HDL ([FEC-91 LA](http://www.hdl.com.br/produtos/fechaduras/fecho-eletrico/fecho-eletrico-mod-fec-91-la-espelho-longo-trinco-ajustavel)).
+* *Door lock* - we used one from HDL ([FEC-91 LA](http://www.hdl.com.br/produtos/fechaduras/fecho-eletrico/fecho-eletrico-mod-fec-91-la-espelho-longo-trinco-ajustavel)).
 * *Door lock Power Supply* - we used the HDL's power supply compatible with our door lock ([TRA-400](https://www.hdl.com.br/produtos/fechaduras/acessorios/fonte-tra-400-para-fechaduras-porteiros-e-centrais))
-* *Relay switch* - We use common relays used with arduino.
-* *Jumper cables* - a lot of them.
+* *Relay switch* - We used common arduino relays.
+* *Jumper cables* - Some of them.
 * Probably, will be necessary other parts for your building infrastructure that are not listed here (e.g. wall mounted plug for power, networking, electric cables, etc)
 
 ### Software Installation
